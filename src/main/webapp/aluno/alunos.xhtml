@@ -1,0 +1,114 @@
+<!-- <?xml version="1.0" encoding="UTF-8" ?> -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+    <ui:composition template="/template/Layout.xhtml">	
+        <ui:define name="metadata">
+            <f:metadata>
+                <f:viewAction action="#{alunoBean.carregar}" />
+            </f:metadata>
+        </ui:define>
+
+        <ui:define name="conteudo">
+
+            <!-- <p:separator /> -->
+            <h3>Listagem de Alunos</h3>
+            <!-- <p:separator /> -->
+
+            <h:form id="frmList" rendered="#{autenticacaoBean.respLogado.cpf != null}">
+                <!-- toobar pesquisa, botões e exportação -->
+<!--                <p:toolbar id="toolbar">
+                    <f:facet name="left">
+                        <p:commandButton icon="novo-icon" title="Novo" 
+                                         actionListener="#{alunoBean.novo}"
+                                         process="@this"
+                                         update="dial edit delete" 
+                                         oncomplete="PF('dialogo').show();">
+
+                            <p:resetInput target="dial" />
+                            <f:actionListener
+                                type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
+                        </p:commandButton>
+
+                        <p:spacer width="10px" />
+
+                        <p:commandButton title="Editar" icon="edit-folha_icon"
+                                         disabled="#{alunoBean.acao eq 'Editar' ?false : true}"
+                                         id="edit" 
+                                         oncomplete="PF('dialogo').show()" 
+                                         update="dial"
+                                         process="@this">
+                            <p:resetInput target="dial" />
+                        </p:commandButton>
+
+                        <p:spacer width="10px" />
+
+                        <p:commandButton title="Excluir" icon="excluir-x-icon" 
+                                         actionListener="#{alunoBean.excluir}"
+                                         disabled="#{alunoBean.acao eq 'Editar' ?false : true}"
+                                         id="delete" 
+                                         update=":msgGlobal tabela toolbar" 
+                                         process="@this">
+
+                            <p:confirm header="Exluir"
+                                       message="Deseja excluir este Tipo de Requerimento?" icon="perigo-icon" />
+                        </p:commandButton>
+                    </f:facet>
+                </p:toolbar>-->
+
+<!--                <p:spacer width="10px" />-->
+
+                <p:dataTable emptyMessage="sem registros" id="tabela"
+                             var="r" widgetVar="rTable" value="#{alunoBean.lista}">
+
+                    <p:column headerText="#"
+                              style="width:10% ;text-align: center" sortBy="#{r.id}">
+                        <h:outputText value="#{r.id}" />
+                        <f:facet name="footer">
+                            <h:outputText value="Qtd #{alunoBean.size}" />
+                        </f:facet>
+                    </p:column>
+
+                    <p:column headerText="Nome"
+                              filterBy="#{r.nome}" filterStyle="width:80%;" sortBy="#{r.nome}">
+                        <h:outputText value="#{r.nome}" />
+                    </p:column>
+
+                    <p:column headerText="Matrícula" style="width:15% ;text-align: center">
+                        <h:outputText value="#{r.matricula}" />
+                    </p:column>
+                    
+                    <p:column headerText="CPF" style="width:15% ;text-align: center">
+                        <h:outputText value="#{r.cpf}" />
+                    </p:column>
+                    
+                    <p:column headerText="Telefone" style="width:15% ;text-align: center">
+                        <h:outputText value="#{r.telefone}" />
+                    </p:column>
+                    
+                    <p:column headerText="Curso" style="width:15% ;text-align: center">
+                        <h:outputText value="#{r.curso.nome}" />
+                    </p:column>
+                    
+                    <p:column headerText="Status" style="width:15% ;text-align: center" sortBy="#{r.statusMatricula}">
+                        <h:outputText value="#{r.statusMatricula}" />
+                    </p:column>
+
+                </p:dataTable>
+            </h:form>
+
+            <!-- carregamento.gif  -->
+            <ui:include src="/comum/carregamento.xhtml" />
+
+            <!-- inclui dialogo de cadastro e alteração  -->
+<!--            <ui:include src="DialCadAlt.xhtml" />-->
+
+        </ui:define>
+    </ui:composition>
+</html>

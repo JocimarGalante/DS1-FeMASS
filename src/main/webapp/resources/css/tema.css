@@ -1,0 +1,113 @@
+/*Personalização de Tema Laboratorio Qualidade*/
+
+/*personalização Menu*/
+.ui-panelmenu .ui-panelmenu-panel .ui-corner-all {
+    -moz-border-radius: 0px !important;
+    -webkit-border-radius: 0px !important; 
+    border-radius: 0px !important;
+}
+.ui-panelmenu .ui-panelmenu-panel .ui-corner-top {
+    -moz-border-radius-topleft: 0px !important;
+    -webkit-border-top-left-radius: 0px !important;
+    border-top-left-radius: 0px !important;
+    -moz-border-radius-topright: 0px !important;
+    -webkit-border-top-right-radius: 0px !important;
+    border-top-right-radius: 0px !important;
+}
+.ui-panelmenu .ui-panelmenu-panel .ui-state-default {
+    webkit-box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0), 0 0px 0px rgba(0, 0, 0, 0) !important;
+    -moz-box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0), 0 0px 0px rgba(0, 0, 0, 0) !important;
+    box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0), 0 0px 0px rgba(0, 0, 0, 0) !important;
+        
+    background-image: none !important;
+    background-repeat: none !important;
+    background: #fff !important;
+    /* background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent); */
+}
+
+.ui-panelmenu .ui-panelmenu-panel .ui-state-default:hover {
+    background: #abb8c9 !important;
+    webkit-box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0), 0 0px 0px rgba(0, 0, 0, 0) !important;
+    -moz-box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0), 0 0px 0px rgba(0, 0, 0, 0) !important;
+    box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0), 0 0px 0px rgba(0, 0, 0, 0) !important;	
+}
+.ui-panelmenu .ui-panelmenu-panel .ui-state-default a:hover {
+	color: #fff !important;
+	text-shadow: none !important;
+}
+.ui-panelmenu-panel > h3 a{
+	text-decoration:none !important;
+	/* text-shadow: #000 2px 3px 2px, #000 -2px -3px 2px !important; */
+	color: #4f4f4f !important;
+}
+.ui-panelmenu .ui-panelmenu-panel .ui-state-active a{
+	color: #fff !important;
+	text-shadow: none !important;
+}
+.ui-panelmenu .ui-panelmenu-panel .ui-state-active{
+    background-color: #abb8c9 !important;
+    -webkit-border-radius: 0px !important;
+    -moz-border-radius: 0px !important;
+    border-radius: 0px !important;  
+    webkit-box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0), 0 0px 0px rgba(0, 0, 0, 0) !important;
+    -moz-box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0), 0 0px 0px rgba(0, 0, 0, 0) !important;
+    box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0), 0 0px 0px rgba(0, 0, 0, 0) !important;
+}
+.ui-panelmenu .ui-panelmenu-panel .ui-state-active .ui-icon-triangle-1-s{
+    background-color: #fff !important;
+    border-radius: 8px !important;
+}
+
+
+/*Personalização data table  - padrão bootstrap: #ffffff, #e6e6e6 */
+/* .ui-datatable .ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-datatable .ui-state-hover, .ui-widget-content .ui-state-hover  */
+.ui-datatable .ui-state-highlight, .ui-datatable .ui-state-hover{    
+    background-image: -moz-linear-gradient(top, #abb8c9, #abb8c9) !important;
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#abb8c9), to(#abb8c9)) !important;
+    background-image: -webkit-linear-gradient(top, #abb8c9, #abb8c9) !important;
+    background-image: -o-linear-gradient(top, #abb8c9, #abb8c9) !important;
+    background-image: linear-gradient(to bottom, #abb8c9, #abb8c9) !important;
+    color: #fff !important;
+    text-shadow: 1px 1px 1px #333 !important;	
+} 
+.ui-datatable .ui-column-filter:hover, .ui-datatable .ui-sortable-column:hover{background-image: none !important;}
+
+/*Diálogos*/
+/*título do diolog*/
+.ui-dialog-title{font-size: 12px !important;}
+.ui-dialog-titlebar{background-color: #ddd !important;}
+
+/*msg global*/
+#msgGlobal_container{margin-top: 92px !important;}
+.ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight{
+    background-color: #abb8c9 !important;
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#abb8c9), to(#abb8c9)) !important;
+    background-image: -webkit-linear-gradient(top, #abb8c9, #abb8c9) !important;
+    background-image: -o-linear-gradient(top, #abb8c9, #abb8c9) !important;
+    background-image: linear-gradient(to bottom, #abb8c9, #abb8c9) !important;
+}
+.ui-state-highlight{
+/*    background-color: #0088cc; */
+/*    background-color: #abb8c9 !important;*/
+/*    margin-top: 88px !important;*/
+/*    background-image: -moz-linear-gradient(top, #350000, #333333) !important;
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#350000), to(#333333)) !important;
+    background-image: -webkit-linear-gradient(top, #350000, #333333) !important;
+    background-image: -o-linear-gradient(top, #350000, #333333) !important;
+    background-image: linear-gradient(to bottom, #350000, #333333) !important;*/
+    
+    /* background-image: -moz-linear-gradient(top, #ccc, #ddd) !important;
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ccc), to(#ddd)) !important;
+    background-image: -webkit-linear-gradient(top, #ccc, #ddd) !important;
+    background-image: -o-linear-gradient(top, #ccc, #ddd) !important;
+    background-image: linear-gradient(to bottom, #ccc, #ddd) !important; */
+}
+
+legend {
+    font-size: 14px !important;
+    margin-left: 5px !important;
+}
+
+.ui-state-default .ui-icon {
+	margin-right: 8px;
+}

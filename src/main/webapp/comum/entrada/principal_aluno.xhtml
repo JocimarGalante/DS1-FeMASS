@@ -1,0 +1,77 @@
+<!-- <?xml version="1.0" encoding="UTF-8" ?> -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+    <ui:composition template="/template/Layout.xhtml">
+        <ui:define name="conteudo">
+
+            <p:fieldset legend=" Dados do Aluno" toggleable="true"
+                        toggleSpeed="500">
+                <p:panel>
+                    <p:panelGrid columns="6" layout="grid"
+                                 styleClass="pgrid-nobor-nobk" 
+                                 columnClasses="ui-grid-col-2,ui-grid-col-2,ui-grid-col-2,ui-grid-col-2,ui-grid-col-2,ui-grid-col-2">
+
+                        <p:outputLabel value="Matrícula: " />
+                        <h:outputText value="#{autenticacaoBean.aluLogado.matricula}" />
+
+                        <p:outputLabel value="Cpf: " />
+                        <h:outputText value="#{autenticacaoBean.aluLogado.cpf}" />
+                        
+                        <p:outputLabel value="Email: " />
+                        <h:outputText value="#{autenticacaoBean.aluLogado.email}" />
+                        
+                        <p:outputLabel value="Nome: " />
+                        <h:outputText value="#{autenticacaoBean.aluLogado.nome}" />
+                        
+                        <p:outputLabel value="Telefone: " />
+                        <h:outputText value="#{autenticacaoBean.aluLogado.telefone}" />
+
+                        <p:outputLabel value="Curso: " />
+                        <h:outputText value="#{autenticacaoBean.aluLogado.curso.nome}" />
+
+                        <p:outputLabel value="Estado Atual: " />
+                        <h:outputText value="#{autenticacaoBean.aluLogado.statusMatricula}" />
+                        
+                        <p:outputLabel value="Período: " />
+                        <h:outputText value="#{autenticacaoBean.aluLogado.periodo}" />
+                        
+                        <p:outputLabel value="CR: " />
+                        <h:outputText value="#{autenticacaoBean.aluLogado.cr}" />
+                    </p:panelGrid>
+                </p:panel>
+
+                <p:separator />
+
+                <p:panel>
+                    <p:panelGrid columns="6" layout="grid"
+                                 styleClass="pgrid-nobor-nobk" 
+                                 columnClasses="ui-grid-col-2,ui-grid-col-2,ui-grid-col-2,ui-grid-col-2,ui-grid-col-2,ui-grid-col-2">
+                        
+                        <p:outputLabel value="Endereço: " />
+                        <h:outputText value="#{autenticacaoBean.aluLogado.endereco.logradouro}" />  
+                        
+                        <p:outputLabel value="Bairro: " />
+                        <h:outputText value="#{autenticacaoBean.aluLogado.endereco.bairro}" />
+                        
+                        <p:outputLabel value="Cidade: " />
+                        <h:outputText value="#{autenticacaoBean.aluLogado.endereco.cidade}" />
+                        
+                        <p:outputLabel value="Cep: " />
+                        <h:outputText value="#{autenticacaoBean.aluLogado.endereco.cep}" />
+                        
+                        <p:outputLabel value="Complemento: " />
+                        <h:outputText value="#{autenticacaoBean.aluLogado.endereco.complemento}" />
+                    </p:panelGrid>
+
+                </p:panel>
+            </p:fieldset> 
+
+        </ui:define>
+    </ui:composition>
+</html>

@@ -1,0 +1,134 @@
+/*ajuste icones prime 6.1*/
+span.ui-menuitem-icon.ui-icon{overflow: visible;}
+
+/* paddind dentro do tap*/
+.ui-accordion .ui-accordion-content {padding: 0px !important;}
+
+/*espa�amento nome menu*/
+span.ui-menuitem-text{padding-left: 1.4em;}
+
+span.ui-menuitem-icon.ui-icon.fa.fa-home.fa-2x{
+	padding-top: .3em;
+	width: 32px;
+	height: 32px;
+
+} 
+
+/* TOPBAR = Cabe�alho*/
+.aw-topbar {
+	/* position: fixed; */
+	top:0;
+	width: 100%;
+	margin: auto;
+	height: 90px;
+	z-index: 9999;
+	transition: top 0.5s;
+}
+
+.header {
+	margin-left: 0px;
+	background-color: #abb8c9;
+	height: 80px;
+}
+
+.header img {
+	float: left;
+	margin-left: 20px;
+	margin-top: 8px;
+}
+
+.header h1 {
+	text-shadow: #000 2px 3px 2px, #000 -2px -3px 2px;
+	float: left;
+	color: #fff;
+	margin-left: 30px;
+	margin-top: 29px;
+	font: normal;
+	font-family: cursive;
+	font-size: 19px;
+}
+
+.sair {
+	float: right;
+	margin-top: 27px;
+	margin-right: 13px;
+}
+
+/* CONTENT */
+.aw-content {
+	/* border: 1px solid #ccc; */
+	float:left;
+	padding: 10px;
+	width: 100%;
+	/* border: 2px solid #555; */
+}
+
+.divuser{margin-top: 10px;}
+.imgUser{
+	width:90px;
+	/* margin: auto; */
+	border-radius: 60%;
+	margin-left:60px;
+}
+.nomeUser{
+	/* background-color: #666; */
+	padding-top: 10px; 
+	padding-bottom: 10px; 
+	margin: 0; 
+	color: #fff;
+}
+
+
+
+.content{
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.titulo {
+	margin: 0;
+	padding: 5px;
+	text-align: center;
+}
+
+.tamanho{height: 360px;}
+.content-min {
+	/* margin-top: 200px;  */
+}
+
+/* TABVIEW */
+.ui-tabs .ui-tabs-nav li.ui-tabs-selected a {
+	color: #555;
+}
+
+/* PANELGRID */
+.ui-panelgrid.panelgrid-noborder .ui-grid-responsive {
+	border: none;
+}
+
+.aw-sidebar.is-toggled {
+	margin-left: 0px;
+}
+
+@media (max-width : 640px) {
+	.ui-tabs.ui-tabs-top>.ui-tabs-nav li {
+		width: 100%;
+	}
+	.ui-panelgrid.panelgrid-noborder .ui-grid-responsive .ui-grid-row {
+		border: none;
+	}
+}
+
+@media (max-width : 509px) {
+	.header h1 {display: none;}
+}
+
+@media (max-width : 639px) {
+	.themes {display: none;}
+	#tool-bar{display: none;}
+	.aw-topbar {top: 0;height: 60px;}
+}
+
+@media (min-width : 960px) {
+	
+}

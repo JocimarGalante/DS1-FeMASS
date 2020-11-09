@@ -1,0 +1,103 @@
+<!-- <?xml version="1.0" encoding="UTF-8" ?> -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+    <ui:composition template="/template/Layout.xhtml">	
+        <ui:define name="metadata">
+            <f:metadata>
+                <f:viewAction action="#{cursoBean.carregar}" />
+            </f:metadata>
+        </ui:define>
+
+        <ui:define name="conteudo">
+
+            <!-- <p:separator /> -->
+            <h3>Listagem de Cursos</h3>
+            <!-- <p:separator /> -->
+
+            <h:form id="frmList" rendered="#{autenticacaoBean.respLogado.cpf != null}">
+                <!-- toobar pesquisa, botões e exportação -->
+                <p:toolbar id="toolbar">
+                    <f:facet name="left">
+                        <p:commandButton icon="novo-icon" title="Novo" 
+                                         actionListener="#{cursoBean.novo}"
+                                         process="@this"
+                                         update="dial edit delete" 
+                                         oncomplete="PF('dialogo').show();">
+
+                            <p:resetInput target="dial" />
+                            <f:actionListener
+                                type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
+                        </p:commandButton>
+
+                        <p:spacer width="10px" />
+
+                        <p:commandButton title="Editar" icon="edit-folha_icon"
+                                         disabled="#{cursoBean.acao eq 'Editar' ?false : true}"
+                                         id="edit" 
+                                         oncomplete="PF('dialogo').show()" 
+                                         update="dial"
+                                         process="@this">
+                            <p:resetInput target="dial" />
+                        </p:commandButton>
+
+                        <p:spacer width="10px" />
+
+                        <p:commandButton title="Excluir" icon="excluir-x-icon" 
+                                         actionListener="#{cursoBean.excluir}"
+                                         disabled="#{cursoBean.acao eq 'Editar' ?false : true}"
+                                         id="delete" 
+                                         update="msgGlobal tabela toolbar" 
+                                         process="@this">
+
+                            <p:confirm header="Exluir"
+                                       message="Deseja excluir este Curso?" icon="perigo-icon" />
+                        </p:commandButton>
+                    </f:facet>
+                </p:toolbar>
+
+                <p:spacer width="10px" />
+
+                <p:dataTable emptyMessage="sem registros" id="tabela"
+                             var="r" widgetVar="rTable" value="#{cursoBean.lista}"
+                             selectionMode="single" selection="#{cursoBean.cadastro}"
+                             rowKey="#{r.id}">
+
+                    <p:ajax event="rowSelect" listener="#{cursoBean.onRowSelect}"
+                            update="frmList:toolbar" />
+                    <p:ajax event="rowUnselect" update="frmList:toolbar" />
+
+                    <p:column headerText="#"
+                              style="width:10% ;text-align: center">
+                        <h:outputText value="#{r.id}" />
+                        <f:facet name="footer">
+                            <h:outputText value="Qtd #{cursoBean.size}" />
+                        </f:facet>
+                    </p:column>
+
+                    <p:column headerText="Nome" >
+                        <h:outputText value="#{r.nome}" />
+                    </p:column>
+
+                    <p:column headerText="Período" 
+                              style="width:10% ;text-align: center">
+                        <h:outputText value="#{r.periodo}" />
+                    </p:column>
+                </p:dataTable>
+            </h:form>
+
+            <!-- carregamento.gif  -->
+            <ui:include src="/comum/carregamento.xhtml" />
+
+            <!-- inclui dialogo de cadastro e alteração  -->
+            <ui:include src="DialCadAlt.xhtml" />
+
+        </ui:define>
+    </ui:composition>
+</html>

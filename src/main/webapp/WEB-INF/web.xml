@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	id="WebApp_ID" version="3.1">
+
+	<!-- Nome da Aplicação -->
+	<display-name>Requerimento</display-name>
+
+	<!-- página inicial -->
+	<welcome-file-list>
+		<welcome-file>comum/autenticacao/autenticacao.xhtml</welcome-file>
+                <welcome-file>comum/autenticacao/autenticacaoResponsavel.xhtml</welcome-file>
+	</welcome-file-list>
+
+	<context-param>
+		<param-name>javax.servlet.jsp.jstl.fmt.localizationContext</param-name>
+		<param-value>resources.application</param-value>
+	</context-param>
+
+	<!-- carregamento dos ícones -->
+	<context-param>
+		<param-name>primefaces.FONT_AWESOME</param-name>
+		<param-value>true</param-value>
+	</context-param>
+
+	<mime-mapping>
+		<extension>woff2</extension>
+		<mime-type>application/x-font-woff2</mime-type>
+	</mime-mapping>
+
+	<!-- estágio do projeto quando for colocar para produção trocar para Production -->
+	<context-param>
+		<param-name>javax.faces.PROJECT_STAGE</param-name>
+		<param-value>Production</param-value>
+	</context-param>
+
+	<!-- significa não fazer cash das páginas -->
+	<context-param>
+		<param-name>javax.faces.FACELETS_REFRESH_PERIOD</param-name>
+		<param-value>0</param-value>
+	</context-param>
+
+	<!-- Configuração do JSF -->
+	<servlet>
+		<servlet-name>Faces Servlet</servlet-name>
+		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>Faces Servlet</servlet-name>
+		<url-pattern>*.xhtml</url-pattern>
+	</servlet-mapping>
+
+	<!-- Tema Bootsfaces -->
+	<context-param>
+		<param-name>BootsFaces_USETHEME</param-name>
+		<param-value>default</param-value>
+	</context-param>
+
+	<!-- um dos 16 temas do bootsfaces -->
+	<!-- <context-param>
+		<param-name>BootsFaces_THEME</param-name>
+		<param-value>cerulean</param-value>
+	</context-param> -->
+
+	<!-- tema do primefaces -->
+	<context-param>
+		<param-name>primefaces.THEME</param-name>
+		<param-value>bootstrap</param-value>
+	</context-param>
+
+	<!-- configuração de upload -->
+	<context-param>
+		<param-name>primefaces.UPLOADER</param-name>
+		<param-value>native</param-value>
+	</context-param>
+
+	<!-- carregamento do ContextListener -->
+	<!-- <listener> <listener-class>br.com.comum.util.ContextListener</listener-class> 
+		</listener> -->
+
+	<!-- tempo da sessão -->
+	<session-config>
+		<session-timeout>20</session-timeout>
+	</session-config>
+
+	<context-param>
+		<param-name>javax.faces.FACELETS_SKIP_COMMENTS</param-name>
+		<param-value>true</param-value>
+	</context-param>
+
+	<!-- Tema do PrimeFaces -->
+	<!-- pra funcionar tem que copiar as pastas de: adamantium-layout, demo, 
+		less e primefaces-adamantium e colocar dentro da pasta resources -->
+
+	<!-- <context-param> <param-name>primefaces.THEME</param-name> <param-value>adamantium</param-value> 
+		</context-param> <context-param> <param-name>javax.faces.FACELETS_LIBRARIES</param-name> 
+		<param-value>/WEB-INF/primefaces-adamantium.taglib.xml</param-value> </context-param> -->
+</web-app>

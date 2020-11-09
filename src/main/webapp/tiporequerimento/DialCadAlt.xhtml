@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+
+    <!-- 		Dialogo para cadastro, alteração -->
+    <p:dialog header="#{tiporequerimentoBean.acao} - Tipo de Requerimento" widgetVar="dialogo"
+              id="dial" draggable="true" resizable="true" modal="true"
+              closable="false" minimizable="false" maximizable="true"
+              showEffect="fade" hideEffect="fade" appendTo="@(body)"
+              footer="Desenvolvido pelo Grupo1 - DS1" responsive="true"
+              fitViewport="true">
+
+        <h:form id="frmCad">
+            <div class="ui-fluid">
+                <!-- <p:panel> -->
+                <p:panel>
+                    <p:panelGrid id="painel" layout="grid" styleClass="pgrid-nobor-nobk"
+                                 columns="2"
+                                 columnClasses="ui-grid-col-4,ui-grid-col-8">
+
+                        <p:outputLabel for="nome" value="Nome:" />
+                        <p:inputText id="nome" maxlength="200"
+                                     value="#{tiporequerimentoBean.cadastro.nome}" required="true"
+                                     requiredMessage="O Campo 'NOME' é obrigatório." />
+
+                        <p:outputLabel for="func" value="Setor: " />
+                        <p:selectOneMenu id="func" filter="true"
+                                         value="#{tiporequerimentoBean.cadastro.setor}" style="width:100%;"
+                                         converter="omnifaces.SelectItemsConverter" required="true"
+                                         requiredMessage="O Campo 'SETOR' é obrigatório.">
+                            <f:selectItem noSelectionOption="true"
+                                          itemLabel="Selecione um Setor..." />
+                            <f:selectItems value="#{tiporequerimentoBean.lisetor}"/>
+                        </p:selectOneMenu>
+
+                        <!-- Salvamento de data -->
+                        <p:outputLabel for="button" value="Data Limite:" />
+                        <p:calendar id="button" value="#{tiporequerimentoBean.cadastro.dataLimite}" showOn="button" />
+
+                        <p:outputLabel for="@next" value="Ativo:" />
+                        <p:selectBooleanCheckbox 
+                            value="#{tiporequerimentoBean.cadastro.ativo}"
+                            disabled="#{tiporequerimentoBean.acao eq 'Novo' ?false : true}">
+                        </p:selectBooleanCheckbox>
+
+                    </p:panelGrid>
+                    <p:outputLabel for="@next" value="Documentos Necessários:" />
+                    <p:panelGrid id="painelDocumento" layout="grid" styleClass="pgrid-nobor-nobk"
+                                 columns="2"
+                                 columnClasses="ui-grid-col-4,ui-grid-col-8">
+                        <p:outputLabel for="titulo" value="Título:" />
+                        <p:inputText id="titulo" value="#{tiporequerimentoBean.documento.titulo}" 
+                                     required="true" requiredMessage="Campo 'TITULO' é obrigatório"
+                                     maxlength="200" />
+                        <p:outputLabel for="link" value="Link:" />
+                        <p:inputText id="link" value="#{tiporequerimentoBean.documento.link}"
+                                     required="true" requiredMessage="Campo 'LINK' é obrigatório"
+                                     maxlength="200" />
+
+                        <p:commandButton value="Adicionar" action="#{tiporequerimentoBean.adicionar}" 
+                                         icon="novo-icon" style="width: 100px"
+                                         update=":frmCad:pnlList :msgGlobal :frmCad:painelDocumento"
+                                         process="@this painelDocumento"
+                                         />
+                        <p:commandButton value="Remover" icon="excluir-x-icon" style="width: 100px"/>
+
+                    </p:panelGrid>
+                    <p:dataTable id="pnlList" var="doc" value="#{tiporequerimentoBean.lidocs}"
+                                 style="width: 500px"
+                                 scrollable="true" scrollHeight="110">
+                        <p:column headerText="Título" style="width:30%">
+                            <p:outputLabel value="#{doc.titulo}"/>
+                        </p:column>
+
+                        <p:column headerText="Link" style="text-align: center;">
+                            <p:outputLabel value="#{doc.link}"/>
+                        </p:column>
+
+                        <p:column headerText="Opções" style="width:10%;text-align: center">
+                            <p:commandButton icon="excluir-x-icon" process="@this"
+                                             style="width:30px;" actionListener="#{tiporequerimentoBean.remover}"
+                                             update=":frmCad:pnlList" title="Remover Documento">
+                                <f:attribute name="docSel" value="#{doc}" />
+                            </p:commandButton>
+<!--                            <p:remoteCommand name="rc" update="pnlList" />-->
+                        </p:column>
+                    </p:dataTable>
+
+                </p:panel>
+
+                <p:separator />
+
+                <p:panel>
+                    <h:panelGrid columns="3">
+                        <p:commandButton value="Salvar" icon="salvar-icon"
+                                         actionListener="#{tiporequerimentoBean.merge}"
+                                         process="@this :frmCad:pnlList :frmCad:painel"
+                                         update=":msgGlobal :frmList:tabela  :frmCad:pnlList :frmCad:painel"
+                                         partialSubmit="true" />
+
+                        <p:spacer width="10px"/>
+
+                        <p:commandButton value="Fechar" icon="fechar-icon"
+                                         actionListener="#{tiporequerimentoBean.fechar}"
+                                         update=":frmList"
+                                         process="@this :frmList" oncomplete="PF('dialogo').hide();" />
+                    </h:panelGrid>
+                </p:panel>
+            </div>
+        </h:form>
+    </p:dialog>
+</html>

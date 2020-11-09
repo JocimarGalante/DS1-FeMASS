@@ -1,0 +1,162 @@
+/*configuracao de icones*/
+/* html {
+	background-color: #5b5c65;
+	margin: 0;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	height: 100%;
+} */
+
+body {
+	/* background-color: transparent; */
+	background-color: #5b5c65;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+}
+
+.topbarcredential {
+	background-color: #5b5c65;
+	height: 23px;
+	/* position: fixed; */
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 1000;
+	overflow: visible;
+	font-size: 11px;
+	color: #fff;
+	line-height: 23px;
+	border-top: 1px solid #999;
+	/* border-bottom: 1px solid #19a36d; */
+	border-bottom: 1px solid #0169AF;
+}
+
+/*barra destaque azul*/
+.topbarcustom {
+	/* background: #00995d; */
+	/* background: #017BCD; azul */
+	background-color: #880000;
+	height: 44px;
+	position: absolute;
+	top: 25px;
+	left: 0;
+	right: 0;
+	z-index: 999;
+	overflow: visible;
+	font-size: 13px;
+	line-height: 35px;
+	-webkit-box-shadow: 0 5px 0 rgba(0, 0, 0, 0.1);
+	box-shadow: 0 5px 0 rgba(0, 0, 0, 0.1);
+}
+
+.container-fluid-alex {
+	position: relative;
+	/* padding-top: 45px; */
+	padding-right: 30px;
+	padding-left: 30px;
+	/* width: 100%; */
+}
+
+.withborderbottom {
+	border-bottom: 1px solid #ccc;
+}
+
+/*caixa nome acesso ao sistema*/
+.titlecontainer {
+	padding: 1px;
+	margin: 0;
+	margin-top: 42px;
+	background-color: #edeff0;
+	padding-left: 15px;
+	height: 35px;
+}
+
+/*nome acesso ao sistema*/
+h3 {
+	color: #0163A5;
+	font-size: 16px;
+	line-height: 30px;
+	margin: 5px 0;
+	font-family: UnimedSlab-Bold, "Trebuchet MS", Helvetica, sans-serif;
+	font-weight: 500;
+}
+ 
+ /*caixa do formulário*/
+.cxcontainer {
+	background-color: #fff;
+	padding-top: 4%; 
+	padding-bottom: 4%;
+}
+
+.topoform{
+	height: 60px;
+	/* background-color: #0163A5; azul */
+	background-color: #4f0000;
+	-webkit-border-top-left-radius: 4px;
+    -moz-border-top-left-radius: 4px;
+    -webkit-border-top-right-radius: 4px;
+    -moz-border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
+.formulario {
+	max-width: 320px;
+	background: #fff;
+	margin-left: 40.04255319148936%;
+	border: 1px solid #ddd;
+}
+
+.footercontainer {
+	/* clear: both; */
+	float:left;
+	width: 100%;
+
+	position: fixed;
+	bottom: 0px;
+	/* background: #017BCD; */
+	background-color: #880000;
+	height: 35px;
+	font-size: .8em;
+	color: #fff;
+	-moz-box-shadow: inset 0 4px 0 rgba(0, 0, 0, 0.1);
+	-webkit-box-shadow: inset 0 4px 0 rgba(0, 0, 0, 0.1);
+	box-shadow: inset 0 4px 0 rgba(0, 0, 0, 0.1);
+}
+
+.direitos{
+	/* margin-top: 10px;
+	margin-left: 5px;
+	margin-right: 5px; */
+	margin: 11px;
+	
+	font-size: 11px
+}
+
+@media ( max-width : 360px) {
+	.formulario {
+		margin: 10px;
+	}
+}
+
+@media (max-width : 640px) and (min-width: 361px) {
+	.formulario {
+		margin-left: 22%;
+	}
+}
+
+@media ( max-width : 800px) and (min-width: 641px) {
+	.formulario {
+		margin-left: 28%;
+	}
+}
+
+@media ( max-width : 1366px) and (min-width: 801px) {
+	.formulario {
+		margin-left: 40.25414364640884%;
+	}
+}
+
+@media ( min-width : 1367px){
+	.formulario {
+		margin-left: 43.25414364640884%;
+	}
+}

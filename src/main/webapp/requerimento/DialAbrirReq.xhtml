@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+
+    <!-- 		Dialogo para cadastro, alteração -->
+    <p:dialog header="#{requerimentoBean.acao} - Requerimento" widgetVar="dialogo"
+              id="dial" draggable="true" resizable="true" modal="true"
+              closable="false" minimizable="false" maximizable="true"
+              showEffect="fade" hideEffect="fade" appendTo="@(body)"
+              footer="Desenvolvido pelo Grupo1 - DS1" responsive="true"
+              fitViewport="true">
+
+        <h:form id="frmCad">
+            <div class="ui-fluid">
+                <!-- <p:panel> -->
+                <p:panel>
+                    <p:panelGrid id="painel" layout="grid" styleClass="pgrid-nobor-nobk"
+                                 columns="2" style="min-width: 600px;max-width: 800px;"
+                                 columnClasses="ui-grid-col-4,ui-grid-col-8">
+
+                        <p:outputLabel  value="Data.:" />
+                        <p:calendar value="#{requerimentoBean.cadastro.dataAbertura}" disabled="true"
+                                    mask="true" pattern="dd/MM/yyyy" showOn="button" navigator="true" />
+
+
+                        <p:outputLabel for="prot" value="Protocolo.:"
+                                       rendered="#{requerimentoBean.acao eq 'Editar'}"/>
+                        <p:inputText id="prot"
+                                     value="#{requerimentoBean.cadastro.numeroProtocolo}" required="true"
+                                     requiredMessage="O Campo 'PROTOCOLO' é obrigatório." disabled="true"
+                                     rendered="#{requerimentoBean.acao eq 'Editar'}"/>
+                        <!-- Código no git o de cima é pra inserir o protocolo automaticamente, está faltando acrescimo da lógica.
+                        
+                        -->
+                        <p:outputLabel for="aluno" value="Aluno.: " />
+                        <p:selectOneMenu id="aluno" value="#{requerimentoBean.cadastro.aluno}" 
+                                         filter="true"
+                                         disabled="#{requerimentoBean.acao eq 'Editar'}"
+                                         converter="omnifaces.SelectItemsConverter" 
+                                         required="true"  requiredMessage="O campo 'ALUNO' é obrigatório.">
+                            <f:selectItem itemLabel="Selecione um aluno" noSelectionOption="true"/> 
+                            <f:selectItems value="#{requerimentoBean.lialuno}" var="aluno" itemLabel="#{aluno.matricula} - #{aluno.nome}" itemValue="#{aluno}"/>
+                        </p:selectOneMenu>   
+                        
+                        <p:outputLabel for="nome" value="Tipo de Requerimento.: " />
+                        <p:selectOneMenu id="nome" value="#{requerimentoBean.cadastro.tipoRequerimento}" 
+                                         filter="true"
+                                         converter="omnifaces.SelectItemsConverter" 
+                                         required="true"  requiredMessage="O campo 'TIPO DE REQUERIMENTO' é obrigatório.">
+                            <f:selectItem itemLabel="Selecione um tipo de requerimento" noSelectionOption="true"/> 
+                            <f:selectItems value="#{requerimentoBean.listatipo}" var="tipo" itemLabel="#{tipo.nome}" itemValue="#{tipo}"/>
+                        </p:selectOneMenu>    
+
+                        <p:outputLabel for="descricao" value="Descricao.: " />
+                        <p:inputTextarea id="descricao" value="#{requerimentoBean.cadastro.descricao}" rows="6" cols="33" />
+                        
+                        <p:outputLabel value="Status.: " />
+                        <p:selectOneMenu id="status" value="#{requerimentoBean.cadastro.statusRequerimento}" 
+                                         converter="omnifaces.SelectItemsConverter" 
+                                         required="true"  
+                                         requiredMessage="O campo 'STATUS DO REQUERIMENTO' é obrigatório."
+                                         disabled="true">
+                            <f:selectItem itemLabel="Selecione um Status do requerimento" noSelectionOption="true"/> 
+                            <f:selectItems value="#{requerimentoBean.liStatusReq}" var="status" itemLabel="#{status}" itemValue="#{status}"/>
+                        </p:selectOneMenu> 
+                        
+                        <p:outputLabel value="Revisar.: " />
+                        <p:selectBooleanCheckbox value="#{requerimentoBean.cadastro.revisao}" disabled="true"/>
+                    </p:panelGrid>
+                </p:panel>
+
+                <p:separator />
+
+                <p:panel>
+                    <h:panelGrid columns="3">
+                        <p:commandButton value="Salvar" icon="salvar-icon"
+                                         actionListener="#{requerimentoBean.merge}"
+                                         process="@this :frmCad"
+                                         update="msgGlobal :frmCad :frmList:tabela"
+                                         partialSubmit="true" />
+
+                        <p:spacer width="10px"/>
+
+                        <p:commandButton value="Fechar" icon="fechar-icon"
+                                         actionListener="#{requerimentoBean.fechar}"
+                                         update=":frmList"
+                                         process="@this :frmList" oncomplete="PF('dialogo').hide();" />
+                    </h:panelGrid>
+                </p:panel>
+            </div>
+        </h:form>
+    </p:dialog>
+</html>

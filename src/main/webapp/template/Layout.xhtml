@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui" 
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+    <!-- vai chamar os metadatas das páginas -->
+    <ui:insert name="metadata" />
+
+    <h:head>
+        <f:facet name="first">
+            <meta charset="UTF-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
+        </f:facet>
+
+        <h:outputStylesheet library="css" name="estilo.css" />
+        <h:outputStylesheet library="css" name="layout.css" />
+        <h:outputStylesheet library="css" name="icones.css" />
+        <h:outputStylesheet library="css" name="tema.css" />
+        <h:outputScript library="js" name="layout.js" />
+        <h:outputScript library="js" name="calendario.js" />
+
+        <title>SisRequerimento</title>
+    </h:head>
+
+    <h:body>
+        <p:idleMonitor timeout="1200000" onidle="PF('dlgSessao').show();" />
+        <!-- 60000 = 1 minuto/ 1200000 = 20 minutos / 600000 = 10 minutos-->
+
+        <!-- dialogo de login -->
+        <p:dialog widgetVar="dlgSessao" header="Sessão Expirada"
+                  resizable="false" draggable="false" modal="true" closable="false">
+            <p:panel>
+                <p:outputLabel value="Sua sessão expirou !!!!" />
+                <br />
+                <p:outputLabel
+                    value="Clique em revalidar para fazer login novamente." />
+            </p:panel>
+            <p:separator />
+            <p:panel>
+                <p:button value="Revalidar" icon="refresh-verde-h-icon"
+                          outcome="/comum/autenticacao/autenticacao.xhtml" />
+            </p:panel>
+        </p:dialog>
+
+        <p:toolbar id="tool-bar">
+            <f:facet name="left">               
+                <p:clock pattern="HH:mm:ss - dd/MM/yyyy" />
+                <p:spacer width="5px" />
+                <h:outputText value="#{autenticacaoBean.constante.COPI} - Suporte. Cel:(00)00000-0000 " />
+                <h:outputText value="#{autenticacaoBean.constante.VERSAO}" />
+            </f:facet>
+
+            <f:facet name="right">
+                <h:outputText value="Usuário: #{autenticacaoBean.responsavel == false ?autenticacaoBean.aluLogado.nome :autenticacaoBean.respLogado.nome}" />
+                <p:spacer width="5px" />
+            </f:facet>
+        </p:toolbar>
+
+        <div class="header js-header">
+            <div class="img" >
+                <h:graphicImage library="imagens" name="logo_empresa.png" width="110" />
+            </div>
+
+            <h1>Sistema de Requerimento</h1>
+
+            <div class="sair">
+                <h:form>
+                    <p:commandButton value="Sair" icon="sair-icon" 
+                                     action="#{autenticacaoBean.sair}"/>
+                </h:form>
+            </div>
+
+        </div>
+
+        <!-- MENU -->
+        <b:navBar fluid="true" style="margin-bottom: 0px;">
+            <b:navbarLinks>
+
+                <b:navLink value="" outcome="/comum/entrada/principal.xhtml"
+                           rendered="#{autenticacaoBean.respLogado.cpf != null}">
+                    <b:iconAwesome name="home" spin="false" size="1x" />
+                </b:navLink>
+
+                <b:navLink value="" outcome="/comum/entrada/principal_aluno.xhtml"
+                           rendered="#{autenticacaoBean.aluLogado.matricula != null}">
+                    <b:iconAwesome name="home" spin="false" size="1x" />
+                </b:navLink>
+
+                <b:dropMenu value="Cadastros" iconAwesome="fa-gears" 
+                            rendered="#{autenticacaoBean.respLogado.cpf != null}">
+
+                    <b:navLink value=" - Alunos" iconAwesome="fa-group"
+                               outcome="/aluno/alunos.xhtml" />
+
+                    <b:navLink value=" - Cursos" iconAwesome="fa-graduation-cap"
+                               outcome="/curso/cursos.xhtml" />
+
+                    <b:navLink value=" - Responsáveis" iconAwesome="fa-male"
+                               outcome="/responsavel/responsaveis.xhtml" />
+
+                    <b:navLink value=" - Tipo de Requerimento" iconAwesome="fa-archive"
+                               outcome="/tiporequerimento/tiposrequerimento.xhtml" />
+
+                    <!-- <b:navLink value=" - Setores" iconAwesome="fa-gear" /> -->
+                    <!-- <b:navLink></b:navLink>
+                    <b:navLink header="Nav header"></b:navLink>
+                    <b:navLink value="Separated link" href="#"></b:navLink>
+                    <b:dropMenu value="Nested submenu" iconAwesome="birthday-cake"
+                            iconAlign="right">
+                            <b:navLink value="You can nest menus" href="#"></b:navLink>
+                            <b:dropMenu value="Nested sub-submenu">
+                                    <b:navLink value="... as deep as ..." href="#"></b:navLink>
+                                    <b:dropMenu value="Nested sub-sub-submenu">
+                                            <b:navLink value="... you want!" href="#"></b:navLink>
+                                    </b:dropMenu>
+                            </b:dropMenu>
+                    </b:dropMenu>
+                    <b:navLink value="One more separated link" href="#"></b:navLink> -->
+                </b:dropMenu>
+
+                <b:dropMenu value="Requerimento" iconAwesome="fa-file">
+                    <b:navLink value=" - Abrir Requerimento" iconAwesome="fa-file"
+                               outcome="/requerimento/abrir-requerimento-aluno.xhtml"
+                               rendered="#{autenticacaoBean.aluLogado.matricula != null}" />
+
+                    <b:navLink value=" - Consultar Requerimento" iconAwesome="fa-search"
+                               outcome="/requerimento/consulta-requerimento.xhtml"/>	
+                    <b:navLink value=" - Requerimentos" iconAwesome="fa-file"
+                               outcome="/requerimento/requerimentos.xhtml"
+                               rendered="#{autenticacaoBean.respLogado.cpf != null}"/>
+
+
+                    <b:navLink></b:navLink>
+                    <b:navLink header="Movimentações" 
+                               rendered="#{autenticacaoBean.respLogado.cpf != null}"/>
+
+                    <b:navLink value=" - Movimentação" iconAwesome="fa-arrows"
+                               outcome="/requerimento/movimentacao-responsavel.xhtml" 
+                               rendered="#{autenticacaoBean.respLogado.cpf != null}"/>
+                </b:dropMenu>
+
+                <!--<b:dropMenu value="Relatórios" iconAwesome="fa-file-pdf-o">-->
+
+                <!--</b:dropMenu>-->
+            </b:navbarLinks>
+        </b:navBar>
+
+
+        <section class="aw-content  js-content">
+            <!-- Marcação no centro para chama-lo posteriormente -->
+            <!-- <p:messages id="msgGlobal" closable="true" autoUpdate="false" /> -->
+            <ui:insert name="conteudo" />
+            <!-- Componente de mensagem de erro ou sucesso, (sticky="true" sempre fica aberto) -->
+            <p:growl id="msgGlobal" sticky="true" />
+        </section>
+
+
+        <!-- inclui dialogo de confirmação  -->
+        <ui:include src="/comum/ConfirExcluir.xhtml" />
+    </h:body>
+
+</html>

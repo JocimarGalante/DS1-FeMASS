@@ -1,0 +1,81 @@
+@charset "utf-8";
+
+.ui-widget {
+	font-size: 100%;
+}
+
+.ui-widget .ui-widget {
+	font-size: 100%;
+}
+
+/*retira borada do panel grid*/
+.ui-panelgrid.pgrid-nobor-nobk  .ui-grid-responsive{
+	border: none;
+	background: none;	
+}
+
+@media(max-width: 640px){
+	.ui-panelgrid.pgrid-nobor-nobk  .ui-grid-responsive .ui-grid-row{
+	border: none;
+	}
+}
+
+
+
+body {
+	font-size: 12px;
+	font-family: Arial, Helvetica, sans-serif;
+	margin: 10px;
+	font-weight: normal
+}
+
+h3{
+	text-align: center;
+	margin-left: 10px;
+}
+
+/*css Vinho com preto (Atrasados)*/
+.tabVerBra{  
+	background-color: #B22222 !important;    
+    color: #fff; 
+    /* background:none red; */
+}
+
+.tabVer{  
+	background-color: #eda3a3 !important;     
+    /* background:none red; */
+}
+
+/*css Vinho com preto (Atrasados)*/
+.tabVinPre{  
+	background-color:#BC8F8F !important;    
+    color: black; 
+    /* background:none #BC8F8F; */
+}  
+
+/*css Laranja com branco (Manutenção)*/
+.tabLarBra{  
+	background-color:#ff8040;    
+    color: white;  
+    /* background:none #ff8040; */
+}  
+
+/*css verde com branco (Fixo)*/
+.tabVerBran{  
+	background-color:#008040 !important;    
+    color: white;  
+    /* background:none #008040; */
+}  
+
+.tabVerd{  
+	background-color:#ddffee;    
+    /* background:none #008040; */
+}  
+
+
+/*css vermelho com branco (Extraviado)*/
+.tabVermBran{  
+	background-color:#FF0000;    
+    color: white;  
+    /* background:none #FF0000; */
+} 

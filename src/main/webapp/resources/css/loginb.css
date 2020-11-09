@@ -1,0 +1,274 @@
+body {
+    /* background-color: transparent; */
+    /* background-color: #5b5c65; */
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+}
+
+.topbarcredential {
+    background-color: #5b5c65;
+    height: 23px;
+    /* position: fixed; */
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    overflow: visible;
+    font-size: 11px;
+    border-top: 1px solid #999;
+}
+
+/*barra destaque azul*/
+.topbarcustom {
+    background-color: #1c85b7;
+    height: 44px;
+    position: absolute;
+    top: 23px;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    overflow: visible;
+    -webkit-box-shadow: 0 5px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 0 5px 0 rgba(0, 0, 0, 0.1);
+}
+
+.container-fluid-alex {
+    position: relative;
+    padding-right: 30px;
+    padding-left: 30px;
+}
+
+.withborderbottom {
+    border-bottom: 1px solid #ccc;
+}
+
+/*caixa nome acesso ao sistema*/
+.titlecontainer {
+    padding: 1px;
+    margin: 0;
+    margin-top: 42px;
+    background-color: #edeff0;
+    padding-left: 15px;
+    height: 40px;
+}
+
+/*nome acesso ao sistema*/
+.titlecontainer h3 {
+    color: #1c85b7;
+    font-size: 16px;
+    line-height: 30px;
+    margin: 5px 0;
+    font-family: UnimedSlab-Bold, "Trebuchet MS", Helvetica, sans-serif;
+    font-weight: 500;
+    text-align: left !important;
+}
+
+/*caixa do formulário*/
+.cxcontainer {
+    position: absolute;
+    margin-left: 40.04255319148936%;
+}
+
+.topoform{
+    height: 120px;
+}
+
+.logoMob{
+    background: rgba(0, 0, 0, 0.7);
+    padding:15px; 
+    margin-left: 23%;
+    margin-bottom:40px;
+}
+.txtLogin{
+    background: rgba(0, 0, 0, 0.8) !important;
+    border:none !important;
+}
+
+.txtLogin:ENABLED{
+    color: #fff !important;
+}
+
+.iconTxt{
+    color: #fff !important;
+}
+
+.formulario {
+    /* max-width: 320px;
+    background: #fff;
+    margin-left: 40.04255319148936%; */
+    /* border: 1px solid #ddd; */
+    padding:20px;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.footercontainer {
+    /* clear: both; */
+    float:left;
+    width: 100%;
+    position: fixed;
+    bottom: 0px;
+    /* background: #017BCD; */
+    background-color: #84caec;
+    height: 35px;
+    /* font-size: .8em; */
+/*    color: #fff;*/
+    -moz-box-shadow: inset 0 4px 0 rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: inset 0 4px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: inset 0 4px 0 rgba(0, 0, 0, 0.1);
+}
+
+.direitos{
+    /* margin-top: 10px;
+    margin-left: 5px;
+    margin-right: 5px; */
+    margin: 8px;
+    font-size: 1.1em;
+}
+
+#particles-js {
+    /* position: relative; */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* color: #6f0000; */
+    /* background: linear-gradient(-45deg, #006eb6, #002441, #002441, #006eb6); */ /*Azul*/
+    /* background: linear-gradient(-45deg, #ff4848, #6f0000, #6f0000, #ff4848); */ /*Vermelho*/
+    /* background: #ccc; */
+    background-size: 200% 200%;
+    -webkit-animation: Gradient 15s ease infinite;
+    -moz-animation: Gradient 15s ease infinite;
+    animation: Gradient 15s ease infinite;
+    z-index: 1;
+}
+
+@media ( max-width : 360px) {
+	.cxcontainer {
+		margin-left: 0%;
+		margin-top: 10%;
+	}
+	.formulario{
+		padding: 10px;
+		border-radius: 0;
+		width: 90%;
+	}
+	.input-group-addon{
+		background: rgba(0, 0, 0, 0.8) !important;
+		/* color: #fff !important; */
+		border: none !important;
+	}
+}
+
+@media (max-width : 411px) and (min-width: 361px) {
+	.cxcontainer {
+		margin-left: 4%;
+		margin-top: 10%;
+	}
+	.formulario{
+		padding: 10px;
+		border-radius: 0;
+		width: 93%;
+	}
+	.input-group-addon{
+		background: rgba(0, 0, 0, 0.8) !important;
+		/* color: #fff !important; */
+		border: none !important;
+	}
+}
+
+@media (max-width : 480px) and (min-width: 412px) {
+	.cxcontainer {
+		margin-left: 7%;
+		margin-top: 10%;
+	}
+	.input-group-addon{
+		background: rgba(0, 0, 0, 0.8) !important;
+		/* color: #fff !important; */
+		border: none !important;
+	}
+}
+
+
+@media (max-width : 640px) and (min-width: 481px) {
+	.cxcontainer {
+		margin-left: 17.6%;
+		margin-top: 6%;
+	}
+	.input-group-addon{
+		background: rgba(0, 0, 0, 0.8) !important;
+		/* color: #fff !important; */
+		border: none !important;
+	}
+}
+
+@media ( max-width : 768px) and (min-width: 641px) {
+	.cxcontainer {
+		margin-left: 22.25414364640884%;
+		margin-top: 5%;
+	}
+        .input-group-addon{
+		background: rgba(0, 0, 0, 0.8) !important;
+		/* color: #fff !important; */
+		border: none !important;
+	}
+}
+
+@media ( max-width : 800px) and (min-width: 769px) {
+	.cxcontainer {
+		margin-left: 23.3%;
+		margin-top: 4%;
+	}
+	.input-group-addon{
+		background: rgba(0, 0, 0, 0.8) !important;
+		/* color: #fff !important; */
+		border: none !important;
+	}
+}
+
+@media ( max-width : 1024px) and (min-width: 801px) {
+	.cxcontainer {
+		margin-left: 29.6%;
+		margin-top: 4.5%;
+	}
+	.input-group-addon{
+		background: rgba(0, 0, 0, 0.8) !important;
+		/* color: #fff !important; */
+		border: none !important;
+	}
+}
+
+@media ( max-width : 1280px) and (min-width: 1025px) {
+	.cxcontainer {
+		margin-left: 33.5%;
+		margin-top: 4%;
+	}
+	.input-group-addon{
+		background: rgba(0, 0, 0, 0.8) !important;
+		/* color: #fff !important; */
+		border: none !important;
+	}
+}
+
+@media ( max-width : 1366px) and (min-width: 1281px) {
+	.cxcontainer {
+		margin-left: 34.7%;
+		margin-top: 4%;
+	}
+	.input-group-addon{
+		background: rgba(0, 0, 0, 0.9) !important;
+		/* color: #fff !important; */
+		border: none !important;
+	}
+}
+
+@media ( min-width : 1367px){
+	.cxcontainer {
+		margin-left: 39%;
+		margin-top: 4%;
+	}
+	.input-group-addon{
+		background: rgba(0, 0, 0, 0.8) !important;
+		/* color: #fff !important; */
+		border: none !important;
+	}
+	
+}

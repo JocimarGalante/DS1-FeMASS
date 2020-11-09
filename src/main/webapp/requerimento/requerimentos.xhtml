@@ -1,0 +1,144 @@
+<!-- <?xml version="1.0" encoding="UTF-8" ?> -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+    <ui:composition template="/template/Layout.xhtml">
+        <ui:define name="metadata">
+            <f:metadata>
+                <f:viewAction action="#{requerimentoBean.carregar}" />
+            </f:metadata>
+        </ui:define>
+
+        <ui:define name="conteudo">
+
+            <!-- <p:separator /> -->
+            <h3>Listagem de Requerimento</h3>
+            <!-- <p:separator /> -->
+
+            <h:form id="frmList">
+                <!-- toobar pesquisa, botões e exportação -->
+                <p:toolbar id="toolbar">
+                    <f:facet name="left">
+                        <p:commandButton icon="novo-icon" title="Novo"
+                                         actionListener="#{requerimentoBean.novo}" 
+                                         update="dial :frmList:tabela edit delete"
+                                         process="@this"
+                                         oncomplete="PF('dialogo').show();">
+
+                            <p:resetInput target="dial" />
+                        </p:commandButton>
+
+                        <p:spacer width="10px" />
+
+                        <p:commandButton title="Editar" icon="edit-folha_icon"
+                                         disabled="#{requerimentoBean.acao eq 'Editar' ?false : true}"
+                                         id="edit" oncomplete="PF('dialogo').show()" update="dial"
+                                         process="@this">
+                            <p:resetInput target="dial" />
+                        </p:commandButton>
+
+                        <p:spacer width="10px" />
+
+                        <p:commandButton title="Cancelar" icon="excluir-x-icon"
+                                         actionListener="#{requerimentoBean.cancelar}"
+                                         disabled="#{requerimentoBean.acao eq 'Editar' ?false : true}"
+                                         id="delete" update="msgGlobal tabela toolbar" process="@this">
+
+                            <p:confirm header="Cancelamento de Requerimento"
+                                       message="Deseja Cancelar este Requerimento Nº #{requerimentoBean.cadastro.numeroProtocolo} ?" 
+                                       icon="perigo-icon" />
+                        </p:commandButton>
+
+                        <p:spacer width="10px" />
+
+                        <p:commandButton value="Atribuir/Movimentar" title="Atribuir Requerimento" 
+                                         actionListener="#{requerimentoBean.atribuir}"
+                                         disabled="#{requerimentoBean.acao eq 'Editar' ?false : true}"
+                                         id="atrib" 
+                                         update="msgGlobal :frmList:tabela"
+                                         process="@this">
+                        </p:commandButton>
+
+                        <p:spacer width="10px" />
+
+                        <p:outputLabel value="Todos:"/>
+                        <p:spacer width="10px" />
+
+                        <p:selectBooleanCheckbox value="#{requerimentoBean.liTodos}">
+                            <p:ajax update=":frmList:tabela"
+                                    listener="#{requerimentoBean.carregar}" />
+                        </p:selectBooleanCheckbox>
+                    </f:facet>
+                </p:toolbar>
+
+                <p:spacer width="10px" />
+
+                <p:dataTable emptyMessage="sem registros" id="tabela" var="r"
+                             widgetVar="rTable" value="#{requerimentoBean.lista}"
+                             selectionMode="single" selection="#{requerimentoBean.cadastro}"
+                             rowKey="#{r.id}" 
+                             rowStyleClass="#{r.statusRequerimento eq 'Cancelado' ?'tabVinPre' :null}">
+
+                    <p:ajax event="rowSelect" listener="#{requerimentoBean.onRowSelect}"
+                            update="frmList:toolbar" />
+                    <p:ajax event="rowUnselect" update="frmList:toolbar" />
+
+                    <p:column headerText="Protocolo"
+                              style="width:10% ;text-align: center">
+                        <h:outputText value="#{r.numeroProtocolo}" />
+                        <f:facet name="footer">
+                            <h:outputText value="Qtd #{requerimentoBean.size}" />
+                        </f:facet>
+                    </p:column>
+
+                    <p:column headerText="Data Abertura" priority="1"
+                              style="width:10% ;text-align: center">
+                        <h:outputText value="#{r.dataAbertura}">
+                            <f:convertDateTime pattern="dd/MM/yy" timeZone="America/Sao_Paulo" />
+                        </h:outputText>
+                    </p:column>
+
+                    <p:column headerText="Tipo Requerimento"
+                              style="width:20% ;text-align: center">
+                        <h:outputText value="#{r.tipoRequerimento.nome}" />
+                    </p:column>
+
+                    <p:column headerText="Descricao" style="width:40%"
+                              sortBy="#{r.descricao}">
+                        <h:outputText value="#{r.descricao}" />
+                    </p:column>
+
+                    <p:column headerText="Aluno" style="width:15%; text-align: center">
+                        <h:outputText value="#{r.aluno.nome}" />
+                    </p:column>
+
+                    <p:column headerText="Revisao" style="width:10% ;text-align: center"
+                              sortBy="#{r.revisao}">
+                        <h:outputText value="#{r.revisao}" />
+                    </p:column>
+
+                    <p:column headerText="Status" style="width:10% ;text-align: center"
+                              sortBy="#{r.statusRequerimento}">
+                        <h:outputText value="#{r.statusRequerimento}" />
+                    </p:column>
+
+                </p:dataTable>
+            </h:form>
+
+            <!-- carregamento.gif  -->
+            <ui:include src="/comum/carregamento.xhtml" />
+
+            <!-- inclui dialogo de cadastro e alteração  -->
+            <ui:include src="DialAbrirReq.xhtml" />
+            
+            <!-- inclui dialogo de movimentação  -->
+            <ui:include src="DialMov.xhtml" />
+
+        </ui:define>
+    </ui:composition>
+</html>

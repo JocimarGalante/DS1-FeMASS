@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+
+    <!-- 		Dialogo para cadastro, alteração -->
+    <p:dialog header="Atribuir/Movimentar - Requerimento" widgetVar="dialogoRes"
+              id="dialRes" draggable="true" resizable="true" modal="true"
+              closable="false" minimizable="false" maximizable="true"
+              showEffect="fade" hideEffect="fade" appendTo="@(body)"
+              footer="Desenvolvido pelo Grupo1 - DS1" responsive="true"
+              fitViewport="true">
+
+        <h:form id="frmCadRes">
+            <!--<div class="ui-fluid">-->
+            <!-- <p:panel> -->
+            <p:panel>
+
+                <p:wizard id="wizId"
+                          flowListener="#{movimentacaoBean.onFlowProcess}" backLabel="Voltar"
+                          nextLabel="Avançar" widgetVar="wiz">
+
+                    <p:tab id="proces" title="Requerimento">
+                        <p:panel header="Dados do Requerimento">
+                            <p:panelGrid id="painel" layout="grid" styleClass="pgrid-nobor-nobk"
+                                         columns="2" style="min-width: 600px;max-width: 800px;"
+                                         columnClasses="ui-grid-col-4,ui-grid-col-8">
+
+                                <p:outputLabel value="Data Movimentação.:"/>
+                                <p:calendar value="#{movimentacaoBean.cadastro.dataMovimentacao}" 
+                                            disabled="true"
+                                            mask="true" pattern="dd/MM/yyyy HH:mm" showOn="button" navigator="true" />
+
+                                <p:outputLabel  value="Data Recebimento.:" />
+                                <p:calendar value="#{movimentacaoBean.cadastro.dataRecebimento}" 
+                                            disabled="true"
+                                            mask="true" pattern="dd/MM/yyyy HH:mm" showOn="button" navigator="true" />
+
+
+                                <p:outputLabel value="Protocolo.:"/>
+                                <p:outputLabel value="#{movimentacaoBean.cadastro.requerimento.numeroProtocolo}" />
+
+                                <p:outputLabel value="Tipo de Requerimento.: " />
+                                <p:outputLabel value="#{movimentacaoBean.cadastro.requerimento.tipoRequerimento.nome}" />
+
+
+                                <p:outputLabel value="Responsável.: " />
+                                <p:outputLabel value="#{movimentacaoBean.cadastro.responsavel.nome}" />
+                            </p:panelGrid>
+                        </p:panel>
+                    </p:tab>
+
+                    <p:tab id="delib" title="Deliberação">
+                        <p:panel header="Dados da Deliberação">
+
+                            <h:panelGrid id="pnlTexto" columns="1" style="min-width: 600px;max-width: 800px;">
+                                <p:outputLabel
+                                    value="Insira suas considerações sobre o requerimento."/>
+
+                                <p:editor value="#{movimentacaoBean.cadastro.deliberacao}"
+                                          widgetVar="editorWidget" height="150"
+                                          controls="bold italic underline font removeformat justify undo redo pastetext source" />
+
+                                <p:outputLabel value="Resultado.: " />
+                                <p:selectOneMenu id="status" value="#{movimentacaoBean.cadastro.requerimento.statusRequerimento}" 
+                                                 converter="omnifaces.SelectItemsConverter" >
+                                    <f:selectItem itemLabel="Selecione um resultado do requerimento" noSelectionOption="true"/> 
+                                    <f:selectItems value="#{movimentacaoBean.liStatusReq}" 
+                                                   var="status" itemLabel="#{status}" itemValue="#{status}"
+                                                   itemDisabled="#{status == 'Cancelado' or status == 'Concluido' or status == 'Aberto'}"/>
+                                </p:selectOneMenu> 
+        <!--                                    <p:textEditor value="#{movimentacaoBean.cadastro.deliberacao}"
+                                                          widgetVar="editorWidget" height="150" style="width:980px;margin-bottom:10px;">
+        
+                                                <f:facet name="toolbar">
+                                                    <span class="ql-formats">
+                                                        <button class="ql-bold" />
+                                                        <button class="ql-italic" />
+                                                        <button class="ql-underline" />
+                                                        <button class="ql-strike" />
+                                                    </span>
+                                                    <span class="ql-formats"> 
+                                                        <select class="ql-font" />
+                                                        <select class="ql-size" />
+                                                    </span>
+                                                </f:facet>
+                                            </p:textEditor> -->
+                            </h:panelGrid>
+
+                            <!-- não usados: strikethrough print source itens usados: controls="bold italic underline   subscript superscript	font size style color highlight 	bullets numbering 
+                            alignleft center alignright justify	undo redo rule image link unlink    cut copy paste pastetext  outdent indent"-->
+                        </p:panel>
+
+                        <p:separator />
+                        <p:panel>
+                            <h:panelGrid columns="3">
+                                <p:commandButton value="Salvar" icon="salvar-icon"
+                                                 actionListener="#{movimentacaoBean.informarResultado}"
+                                                 process="@this :frmCadRes"
+                                                 update="msgGlobal :frmCadRes :frmList:tabela"
+                                                 />
+
+                                <p:spacer width="10px"/>
+
+                                <p:commandButton value="Fechar" icon="fechar-icon"
+                                                 actionListener="#{movimentacaoBean.fechar}"
+                                                 update=":frmList"
+                                                 process="@this :frmList" oncomplete="PF('dialogoRes').hide();" />
+                            </h:panelGrid>
+                        </p:panel>
+                    </p:tab>
+                </p:wizard>
+            </p:panel>
+
+            <!--</div>-->
+        </h:form>
+    </p:dialog>
+</html>
